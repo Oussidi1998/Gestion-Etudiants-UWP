@@ -1,0 +1,37 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Windows.UI.Xaml.Controls"
+    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    x:Class="App2.Main"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="MainMenu" Loaded="MainMenu_Loaded" IsBackButtonVisible="Collapsed" BackgroundSizing="InnerBorderEdge" ItemInvoked="NavView_ItemInvoked">
+            <NavigationView.MenuItems>
+                <AutoSuggestBox Width="288px" QueryIcon="Find" AutomationProperties.Name="Search" PlaceholderText="Recherche" />
+                <muxc:NavigationViewItemSeparator ></muxc:NavigationViewItemSeparator>
+                <NavigationViewItem x:Name="etudiants" Icon="ContactInfo">
+                    <TextBlock Tag="etudiants">Les étudiants</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="filieres" Icon="AllApps" >
+                    <TextBlock Tag="filieres">Les Filières</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="cours" Icon="Bookmarks">
+                    <TextBlock Tag="cours">Les Cours</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="absences" Icon="BlockContact" >
+                    <TextBlock Tag="absences">Les Absences</TextBlock>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="contentFrame">
+            </Frame>
+
+
+        </NavigationView>
+    </Grid>
+</Page>

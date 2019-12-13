@@ -1,0 +1,8 @@
+// the files/folder to ignore
+
+
+.vs
+obj
+bin
+dbQuery.txt
+database.sql
