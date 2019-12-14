@@ -25,7 +25,10 @@
                     <TextBlock Tag="cours">Les Cours</TextBlock>
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="absences" Icon="BlockContact" >
-                    <TextBlock Tag="absences">Les Absences</TextBlock>
+                    <TextBlock Tag="absences">Valider l'absence</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="statistiques" Icon="BrowsePhotos" >
+                    <TextBlock Tag="statistiques">Les Statistiques</TextBlock>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame">

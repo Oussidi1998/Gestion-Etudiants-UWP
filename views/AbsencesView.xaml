@@ -12,5 +12,6 @@
     <Grid >
         <Custom:DataGrid HorizontalAlignment="Left" Height="530
                          " Margin="50,134,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Left" Margin="52,11,0,0" Text="Valider l'absence d'aujourd'hui" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
     </Grid>
 </Page>

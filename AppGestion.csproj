@@ -116,17 +116,19 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="views\AbsencesView.xaml.cs">
+    <Compile Include="Models\Cour.cs" />
+    <Compile Include="Models\Filiere.cs" />
+    <Compile Include="Views\AbsencesView.xaml.cs">
       <DependentUpon>AbsencesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\CoursView.xaml.cs">
+    <Compile Include="Views\CoursView.xaml.cs">
       <DependentUpon>CoursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs" />
-    <Compile Include="views\FilieresView.xaml.cs">
+    <Compile Include="Views\FilieresView.xaml.cs">
       <DependentUpon>FilieresView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.xaml.cs">
@@ -136,7 +138,11 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="views\StudentsView.xaml.cs">
+    <Compile Include="Models\Etudiant.cs" />
+    <Compile Include="Views\StatistiqueView.xaml.cs">
+      <DependentUpon>StatistiqueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentsView.xaml.cs">
       <DependentUpon>StudentsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -160,15 +166,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="views\AbsencesView.xaml">
+    <Page Include="Views\AbsencesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\CoursView.xaml">
+    <Page Include="Views\CoursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\FilieresView.xaml">
+    <Page Include="Views\FilieresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,7 +186,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="views\StudentsView.xaml">
+    <Page Include="Views\StatistiqueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -197,6 +207,9 @@
     </PackageReference>
     <PackageReference Include="SQLitePCL">
       <Version>3.8.7.2</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
+      <Version>1.0.1.7</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

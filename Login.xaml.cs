@@ -24,7 +24,7 @@ namespace App2
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private SQLiteConnection con = new SQLiteConnection("database.db");
+        private SQLiteConnection con = new SQLiteConnection("database_uwp.db");
         public MainPage()
         {
             this.InitializeComponent();
