@@ -14,7 +14,7 @@
   <mp:PhoneIdentity PhoneProductId="8d728d77-fb85-4af5-8d2e-0e185ca84484" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>App2</DisplayName>
+    <DisplayName>App</DisplayName>
     <PublisherDisplayName>Oussidi_Mohamed</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -44,8 +44,4 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>

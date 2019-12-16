@@ -5,12 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Windows.UI.Xaml.Controls"
-    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     x:Class="App2.Main"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Grid>
+
         <NavigationView x:Name="MainMenu" Loaded="MainMenu_Loaded" IsBackButtonVisible="Collapsed" BackgroundSizing="InnerBorderEdge" ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
                 <AutoSuggestBox Width="288px" QueryIcon="Find" AutomationProperties.Name="Search" PlaceholderText="Recherche" />
@@ -33,8 +32,7 @@
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame">
             </Frame>
-
-
-        </NavigationView>
+        </NavigationView>  
     </Grid>
+  
 </Page>

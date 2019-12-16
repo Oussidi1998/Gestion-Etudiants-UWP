@@ -1,5 +1,6 @@
 ﻿
 using App2.Views;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -13,7 +14,6 @@ namespace App2
     /// </summary>
     public sealed partial class Main : Page
     {
-        private int id_user;
         public Main()
         {
             this.InitializeComponent();
@@ -58,18 +58,8 @@ namespace App2
 
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            /*// set the initial SelectedItem
-            foreach (NavigationViewItemBase item in MainMenu.MenuItems)
-            {
-                if (item is NavigationViewItem && item.Tag.ToString() == "etudiants")
-                {
-                    MainMenu.SelectedItem = item;
-                    break;
-                }
-            }*/
             contentFrame.Navigate(typeof(StudentsView));
         }
-
 
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{A303FDBD-4378-41B1-9C07-DE4AFE9A0553}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>App2</RootNamespace>
-    <AssemblyName>App2</AssemblyName>
+    <RootNamespace>App</RootNamespace>
+    <AssemblyName>Students Management</AssemblyName>
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
@@ -118,16 +118,21 @@
   <ItemGroup>
     <Compile Include="Models\Cour.cs" />
     <Compile Include="Models\Filiere.cs" />
+    <Compile Include="Utils\ComboItem.cs" />
+    <Compile Include="Utils\CsvParse.cs" />
+    <Compile Include="Utils\EtudiantMap.cs" />
     <Compile Include="Views\AbsencesView.xaml.cs">
       <DependentUpon>AbsencesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddStudentView.xaml.cs">
+      <DependentUpon>AddStudentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CoursView.xaml.cs">
       <DependentUpon>CoursView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs" />
     <Compile Include="Views\FilieresView.xaml.cs">
       <DependentUpon>FilieresView.xaml</DependentUpon>
     </Compile>
@@ -170,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddStudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CoursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,14 +205,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CsvHelper">
+      <Version>12.2.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.UWP.UI.Controls.DataGrid">
       <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.3.191129002</Version>
+      <Version>2.3.191211002</Version>
     </PackageReference>
     <PackageReference Include="SQLitePCL">
       <Version>3.8.7.2</Version>

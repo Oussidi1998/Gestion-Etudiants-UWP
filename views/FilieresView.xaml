@@ -11,7 +11,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Loaded="win_loaded">
-        <Custom1:RadDataGrid x:Name="tableFilieres" ItemsSource="{Binding}"  HorizontalAlignment="Left" Margin="52,100,0,0" VerticalAlignment="Top" Width="auto" Height="564"/>
+        <Custom1:RadDataGrid x:Name="tableFilieres" ItemsSource="{Binding}"  HorizontalAlignment="Left" Margin="52,100
+                             ,0,0" VerticalAlignment="Top" Width="auto" Height="820"/>
         <TextBlock HorizontalAlignment="Left" Margin="52,11,0,0" Text="Liste des filières" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
 
     </Grid>

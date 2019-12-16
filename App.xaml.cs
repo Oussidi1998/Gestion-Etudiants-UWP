@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +24,9 @@ namespace App2
     /// </summary>
     sealed partial class App : Application
     {
+
+        ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
         /// <summary>
         /// Initialise l'objet d'application de singleton.  Il s'agit de la première ligne du code créé
         /// à être exécutée. Elle correspond donc à l'équivalent logique de main() ou WinMain().
@@ -63,10 +68,32 @@ namespace App2
             {
                 if (rootFrame.Content == null)
                 {
-                    // Quand la pile de navigation n'est pas restaurée, accédez à la première page,
-                    // puis configurez la nouvelle page en transmettant les informations requises en tant que
-                    // paramètre
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    // I add this part for login and remember user
+                    // check user begin
+                    Object dateRemember = localSettings.Values["remember"];
+                    if (dateRemember != null)
+                    {
+                        DateTime dateFromDateRemember = Convert.ToDateTime(dateRemember.ToString());
+                        int daysDiff = ((TimeSpan)(DateTime.Today - dateFromDateRemember)).Days;
+
+                        Debug.WriteLine("days diff : " + daysDiff);
+                        Debug.WriteLine("date remember : " + dateFromDateRemember);
+
+                        if (daysDiff >= 10)
+                        {
+                            localSettings.Values.Remove("remember");
+                        }
+                        else
+                        {
+                            rootFrame.Navigate(typeof(Main), e.Arguments);
+                        }
+                    }
+                    else
+                    {
+                        rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    }
+                    // end check user
+
                 }
                 // Vérifiez que la fenêtre actuelle est active
                 Window.Current.Activate();

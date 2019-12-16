@@ -7,10 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-
-    <Grid Background="White" Loaded="app_load">
+    <Grid Background="White">
         <TextBox x:Name="userInput" HorizontalAlignment="Center" Margin="0,267,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" PlaceholderText="Nom d'ulisateur "/>
         <PasswordBox x:Name="mtpInput" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Width="371" PlaceholderText="Mot de passe"/>
         <Button x:Name="loginButton" Content="Se Connecter" Margin="0,381,0,0" VerticalAlignment="Top" Width="371" HorizontalAlignment="Center" Click="loginButton_Click"/>
+        <CheckBox x:Name="remember_me" Content="Se Souvenir de moi" Margin="0,441,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" />
+        
     </Grid>
 </Page>
