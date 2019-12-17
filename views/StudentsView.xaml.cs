@@ -7,16 +7,15 @@ using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
+using Telerik.UI.Xaml.Controls.Grid;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-// Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace App2
 {
     /// <summary>
@@ -26,6 +25,7 @@ namespace App2
     {
         private SQLiteConnection con = new SQLiteConnection("database_uwp.db");
         private ObservableCollection<Etudiant> ListStudents { get; }
+        private Etudiant selectedStudent;
 
         public StudentsView()
         {
@@ -70,18 +70,6 @@ namespace App2
             picker.FileTypeFilter.Add(".csv");
 
             var file = await picker.PickSingleFileAsync();
-
-            /*using (var reader = new StreamReader(await file.OpenStreamForReadAsync()))
-            using (var csv = new CsvReader(reader))
-            {
-                csv.Configuration.RegisterClassMap<EtudiantMap>();
-
-                var records = csv.GetRecords<Etudiant>();
-                
-                foreach (Etudiant etud in records){
-                    ListStudents.Add(etud);
-                }
-            }*/
 
             // we test in case he close win but did choose the file
             if (file != null)
@@ -135,19 +123,48 @@ namespace App2
                 }
             }
         }
-        public void clearFilter(object sender, RoutedEventArgs e)
+
+        private void editStudentButton(object sender, RoutedEventArgs e)
         {
+            Frame.Navigate(typeof(AddStudentView),selectedStudent);
+        }
+
+        private async void deleteStudentButton(object sender, RoutedEventArgs e)
+        {
+            ContentDialog res = new ContentDialog
+            {
+                Title = "Suppression d'un etudiant !",
+                Content = "Voulez-vous vraiment supprimer cette étudiant ?",
+                PrimaryButtonText = "Supprimer",
+                CloseButtonText = "Annuler"
+            };
+
+            ContentDialogResult result = await res.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // delete the student
+                if (ListStudents.Contains(selectedStudent))
+                {
+                    // delete in local table
+                    ListStudents.Remove(selectedStudent);
+                    // delete in db
+
+                }
+            }
+
+            res.Hide();
 
         }
 
-        private void selectedColumnList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void itemSelected(object sender, DataGridSelectionChangedEventArgs e)
         {
+            supprimer.Visibility = Visibility.Visible;
+            modifier.Visibility = Visibility.Visible;
 
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            // get the user selected for update and delete
+            selectedStudent = (Etudiant) tableStudents.SelectedItem;
+            Debug.WriteLine(selectedStudent);
         }
     }
 }

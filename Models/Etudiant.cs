@@ -36,5 +36,10 @@ namespace App2.Models
         public string Adress { get => adress; set => adress = value; }
         public string Date_naissance { get => date_naissance; set => date_naissance = value; }
         public string Phone { get => phone; set => phone = value; }
+
+        public override string ToString()
+        {
+            return Cne + " -- " + Nom;
+        }
     }
 }

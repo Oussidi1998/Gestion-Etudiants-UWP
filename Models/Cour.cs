@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace App2.Models
 {
-    class Cour
+    class Cour: INotifyPropertyChanged
     {
         private int id_cour;
         private string intitulé;
@@ -22,8 +23,15 @@ namespace App2.Models
         }
 
         public int Id_cour { get => id_cour; set => id_cour = value; }
-        public string Intitulé { get => intitulé; set => intitulé = value; }
+        public string Intitulé { get => intitulé; set { intitulé = value; NotifyPropertyChanged("Intitulé"); } }
         public int Nombre_des_etudiant { get => nombre_des_etudiant; set => nombre_des_etudiant = value; }
         public int Nombre_des_absences { get => nombre_des_absences; set => nombre_des_absences = value; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

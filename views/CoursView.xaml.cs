@@ -1,20 +1,11 @@
 ﻿using App2.Models;
+using Microsoft.UI.Xaml.Controls;
 using SQLitePCL;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,11 +16,22 @@ namespace App2
     /// </summary>
     public sealed partial class CoursView : Page
     {
-        ObservableCollection<Cour> ListCours;
+        private ObservableCollection<Cour> listCours;
         private SQLiteConnection con = new SQLiteConnection("database_uwp.db");
+        private Cour selectedCour;
+
+        internal ObservableCollection<Cour> ListCours
+        {
+            get => listCours;
+            set
+            {
+                listCours = value;
+            }
+        }
+
         public CoursView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             ListCours = new ObservableCollection<Cour>();
         }
 
@@ -61,5 +63,60 @@ namespace App2
 
         }
 
+        private void coursSelected(object sender, Telerik.UI.Xaml.Controls.Grid.DataGridSelectionChangedEventArgs e)
+        {
+            selectedCour = (Cour)tableCours.SelectedItem;
+            supprimerCour.Visibility = Visibility.Visible;
+            modifierCour.Visibility = Visibility.Visible;
+            CourLabel.Text = selectedCour.Intitulé;
+        }
+
+        private async void deleteCourAction(object sender, RoutedEventArgs e)
+        {
+            ContentDialog res = new ContentDialog
+            {
+                Title = "Suppression d'un Cour !",
+                Content = "Voulez-vous vraiment supprimer ce cour ?",
+                PrimaryButtonText = "Supprimer",
+                CloseButtonText = "Annuler"
+            };
+
+            ContentDialogResult result = await res.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // delete the student
+                if (ListCours.Contains(selectedCour))
+                {
+                    // delete in db
+                    string query = @"Delete from Cours WHERE id_cour='" + selectedCour.Id_cour.ToString() + "'";
+                    ISQLiteStatement stmt = con.Prepare(query);
+                    stmt.Step();
+
+                    // show tooltip
+
+                    // delete in local table
+                    ListCours.Remove(selectedCour);
+                    // clear the textbox
+                    CourLabel.Text = "";
+                }
+            }
+
+            res.Hide();
+        }
+
+        private void modifyCourAction(object sender, RoutedEventArgs e)
+        {
+            if (ListCours.Contains(selectedCour))
+            {
+               var item =  ListCours.Where(cour=>cour.Id_cour==selectedCour.Id_cour).Single();
+               
+                if(item != null)
+                {
+                    item.Intitulé = CourLabel.Text;
+                }
+
+            }
+        }
     }
 }

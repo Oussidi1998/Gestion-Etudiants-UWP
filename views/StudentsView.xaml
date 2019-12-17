@@ -4,7 +4,6 @@
     xmlns:local="using:App2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:Custom1="using:Telerik.UI.Xaml.Controls.Grid"
       x:Class="App2.StudentsView"
     mc:Ignorable="d"
@@ -12,13 +11,16 @@
 
     <Grid Loaded="win_loaded">
         <CommandBar Background="Transparent" IsOpen="False" DefaultLabelPosition="Right" Grid.ColumnSpan="2" Height="40">
-            <AppBarButton Icon="Add" Name="ajouter"  Label="Ajouter" Click="addStudentButton"/>
+            <AppBarButton Icon="Add" Name="ajouter"  Label="Ajouter un(e) étudiant(e)" Click="addStudentButton"/>
+            <AppBarButton Icon="Edit" Name="modifier" Label="Modifier" Visibility="Collapsed" Click="editStudentButton" />
+            <AppBarButton Icon="Delete" Name="supprimer"  Label="Supprimer" Visibility="Collapsed" Click="deleteStudentButton"/>
             <AppBarButton Icon="Upload" Name="exporter" Label="Exporter" Click="exporterExcel" />
             <AppBarButton Icon="Download" Name="importer" Label="Importer" Click="importExcel" />
         </CommandBar>
         <TextBlock HorizontalAlignment="Left" Margin="52,11,0,0" Text="Liste des étudiants" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="27"/>
-        <Custom1:RadDataGrid x:Name="tableStudents" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="52,176,0,0" VerticalAlignment="Top" Width="Auto" Height="776">
+        <Custom1:RadDataGrid x:Name="tableStudents" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="52,188,0,0" VerticalAlignment="Top" Width="Auto" Height="764" SelectionChanged="itemSelected">
 
         </Custom1:RadDataGrid>
+        <TextBox  HorizontalAlignment="Stretch" Height="38" Margin="52,150,0,0" PlaceholderText="Live Search" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" FontSize="16"/>
     </Grid>
 </Page>
