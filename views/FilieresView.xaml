@@ -6,14 +6,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:Custom1="using:Telerik.UI.Xaml.Controls.Grid"
+    xmlns:Custom2="using:Telerik.UI.Xaml.Controls.Chart"
     x:Class="App2.FilieresView"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Loaded="win_loaded">
-        <Custom1:RadDataGrid x:Name="tableFilieres" ItemsSource="{Binding}"  HorizontalAlignment="Left" Margin="52,100
-                             ,0,0" VerticalAlignment="Top" Width="auto" Height="820"/>
+        <Custom1:RadDataGrid x:Name="tableFilieres" ItemsSource="{x:Bind Path=ListFilieres,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="808,172,0,0" VerticalAlignment="Top" Width="auto" Height="776" SelectionChanged="itemSelected"/>
         <TextBlock HorizontalAlignment="Left" Margin="52,11,0,0" Text="Liste des filières" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+
+        <Rectangle Width="675" VerticalAlignment="Top" Stroke="Black" Margin="52,172,0,0" Height="776" HorizontalAlignment="Left" FocusVisualPrimaryBrush="{x:Null}"/>
+        <TextBox x:Name="filiereLabel" Width="600" VerticalAlignment="Top" TextWrapping="Wrap" PlaceholderText="Intitulé de filière" Margin="92,275,0,0" Height="36" HorizontalAlignment="Left"/>
+        <Button Width="172" VerticalAlignment="Top" Margin="87,329,0,0" Height="36" Click="ajouterFiliere" Content="Ajouter"/>
+        <Button x:Name="supprimerFiliere" Visibility="Collapsed" Content="Supprimer" Height="36" Margin="515,329,0,0" VerticalAlignment="Top" Width="172" Click="deleteFiliereAction"/>
+        <Button x:Name="modifierFiliere" Visibility="Collapsed" Content="Modifier" Height="36" Margin="304,329,0,0" VerticalAlignment="Top" Width="172" Click="modifyFiliereAction"/>
+        <TextBlock Width="544" VerticalAlignment="Top" TextWrapping="Wrap" Text="Selectionner une filière pour le modifier ,supprimer ou voir leur Statisques" Margin="106,208,0,0" Height="19" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+        <Custom2:RadCartesianChart HorizontalAlignment="Left" Height="288" Margin="106,485,0,0" VerticalAlignment="Top" Width="567" />
 
     </Grid>
 </Page>

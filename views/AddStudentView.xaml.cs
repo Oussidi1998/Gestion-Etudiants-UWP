@@ -13,18 +13,17 @@ namespace App2.Views
     public sealed partial class AddStudentView : Page
     {
         private SQLiteConnection con ;
-        private ObservableCollection<ComboItem> listFilieres ;
-        private ObservableCollection<ComboItem> listGender ;
+        private ObservableCollection<String> listFilieres ;
+        private ObservableCollection<String> listGender ;
         private Etudiant etudiantForModify;
 
-        internal ObservableCollection<ComboItem> ListFilieres { get => ListFilieres; set => ListFilieres = value; }
-        internal ObservableCollection<ComboItem> ListGender { get => ListGender; set => ListGender = value; }
+        internal ObservableCollection<String> ListFilieres { get => ListFilieres; set => ListFilieres = value; }
+        internal ObservableCollection<String> ListGender { get => ListGender; set => ListGender = value; }
 
         public AddStudentView()
         {
             
            InitializeComponent();
-           DataContext = this;
         }
 
         private void cancelAddStudent(object sender, RoutedEventArgs e)
@@ -43,27 +42,40 @@ namespace App2.Views
         {
 
         }
+        private void modifyStudent(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void loaded(object sender, RoutedEventArgs e)
         {
             if (etudiantForModify != null)
             {
-
-            }
-            else
-            {
-
-
+                // page accessoires
+                page_title.Text = "Modifier un(e) Etudiant(e)";
+                buttonActions.Content = "Modifier";
+                buttonActions.Click -= addStudent;
+                buttonActions.Click += modifyStudent;
+                // fill fields with data
+                nomInput.Text = etudiantForModify.Nom;
+                prenomInput.Text = etudiantForModify.Prenom;
+                cneInput.Text = etudiantForModify.Cne;
+                cinInput.Text = etudiantForModify.Cin;
+                phoneInput.Text = etudiantForModify.Phone;
+                comboGender.Text = etudiantForModify.Sexe;
+                comboFiliere.Text = etudiantForModify.Filiere;
+                adresseInput.Text = etudiantForModify.Adress;
+                // for date of birth
             }
 
             // init props 
             con = new SQLiteConnection("database_uwp.db");
-            listFilieres = new ObservableCollection<ComboItem>();
-            listGender = new ObservableCollection<ComboItem>();
+            listFilieres = new ObservableCollection<String>();
+            listGender = new ObservableCollection<String>();
 
             // fill sexe combobox
-            listGender.Add(new ComboItem("F", "Féminin"));
-            listGender.Add(new ComboItem("M", "Masculin"));
+            listGender.Add("F");
+            listGender.Add("M");
 
 
             // fill filiere combobox
@@ -71,8 +83,7 @@ namespace App2.Views
             ISQLiteStatement stmt = con.Prepare(query);
             while (stmt.Step() == SQLiteResult.ROW)
             {
-                ComboItem item = new ComboItem(stmt["id_filiere"].ToString(), stmt["nom_filiere"].ToString());
-                listFilieres.Add(item);
+                listFilieres.Add(stmt["nom_filiere"].ToString());
             }
         }
     }

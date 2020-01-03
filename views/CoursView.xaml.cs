@@ -4,6 +4,7 @@ using SQLitePCL;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -94,6 +95,8 @@ namespace App2
                     stmt.Step();
 
                     // show tooltip
+                    MessageDialog dialog = new MessageDialog("Supprimé");
+                    await dialog.ShowAsync();
 
                     // delete in local table
                     ListCours.Remove(selectedCour);
@@ -117,6 +120,35 @@ namespace App2
                 }
 
             }
+        }
+
+        private async void ajouterCour(object sender, RoutedEventArgs e)
+        {
+            string cour = CourLabel.Text;
+            string msg = "Bien Ajouté";
+            // check already exist
+            string query = @"SELECT * FROM Cours WHERE designation='" + cour + "'";
+            ISQLiteStatement stmt = con.Prepare(query);
+            if (stmt.Step() == SQLiteResult.ROW)
+            {
+                msg = "Cet Cour déjà existe";
+            }
+            else
+            {
+                // add it in db
+                query = @"INSERT INTO Cours(designation) VALUES('"+cour+"')";
+                stmt = con.Prepare(query);
+                stmt.Step();
+
+                // add it in table
+                ListCours.Clear();
+                win_loaded(sender,e);
+            }
+
+            // show reaction
+            MessageDialog dialog = new MessageDialog(msg);
+            await dialog.ShowAsync();
+
         }
     }
 }

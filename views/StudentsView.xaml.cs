@@ -24,7 +24,7 @@ namespace App2
     public sealed partial class StudentsView : Page
     {
         private SQLiteConnection con = new SQLiteConnection("database_uwp.db");
-        private ObservableCollection<Etudiant> ListStudents { get; }
+        private ObservableCollection<Etudiant> ListStudents { get; set; }
         private Etudiant selectedStudent;
 
         public StudentsView()
@@ -34,12 +34,6 @@ namespace App2
             tableStudents.DataContext = ListStudents;
         }
 
-        // this function just to check where is the location of database
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            StorageFolder localCache = ApplicationData.Current.LocalCacheFolder;
-            await Launcher.LaunchFolderAsync(localCache);
-        }
 
         private void win_loaded(object sender, RoutedEventArgs e)
         {
@@ -165,6 +159,32 @@ namespace App2
             // get the user selected for update and delete
             selectedStudent = (Etudiant) tableStudents.SelectedItem;
             Debug.WriteLine(selectedStudent);
+        }
+
+        private async void liveSearchData(object sender, TextChangedEventArgs e)
+        {
+            String searchItem = searchbox.Text;
+            ObservableCollection<Etudiant> list_temp = new ObservableCollection<Etudiant>();
+            
+            foreach (Etudiant etud in ListStudents)
+            {
+                if (etud.Adress.Contains(searchItem) || etud.Cne.Contains(searchItem) || etud.Cin.Contains(searchItem) || etud.Phone.Contains(searchItem) || etud.Sexe.Contains(searchItem) || etud.Nom.Contains(searchItem) || etud.Prenom.Contains(searchItem) || etud.Date_naissance.Contains(searchItem) || etud.Filiere.Contains(searchItem))
+                {
+                    list_temp.Add(etud);
+                    Debug.WriteLine("yes exist");
+                } 
+            }
+            
+            // still need to be fixed
+            /* next :
+                addStudent and ModifyStudent
+                add cortana
+                add Notifications
+                
+             */
+
+            ListStudents.Clear();
+            ListStudents = list_temp;
         }
     }
 }

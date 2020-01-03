@@ -12,7 +12,6 @@
 
         <NavigationView x:Name="MainMenu" Loaded="MainMenu_Loaded" IsBackButtonVisible="Collapsed" BackgroundSizing="InnerBorderEdge" ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
-                <AutoSuggestBox Width="288px" QueryIcon="Find" AutomationProperties.Name="Search" PlaceholderText="Recherche" />
                 <muxc:NavigationViewItemSeparator ></muxc:NavigationViewItemSeparator>
                 <NavigationViewItem x:Name="etudiants" Icon="ContactInfo">
                     <TextBlock Tag="etudiants">Les étudiants</TextBlock>

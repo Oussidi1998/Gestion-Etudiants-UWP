@@ -9,35 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Loaded="loaded">
-        <TextBlock HorizontalAlignment="Left" Margin="877,154,0,0" Text="Ajouter un(e) étudiant(e)" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" FontFamily="Segoe UI" Margin="420,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540" PlaceholderText="Nom"/>
-        <TextBox HorizontalAlignment="Left" Margin="1020,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540" PlaceholderText="Prénom"/>
-        <ComboBox x:Name="comboFiliere" DisplayMemberPath="Text" ItemsSource="{Binding}" Height="32" Margin="420,394,0,0" Width="540" PlaceholderText="Filière">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Green" BorderThickness="1" Padding="5">
-                        <TextBlock Text="{Binding Path=Text}" />
-                    </Border>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <DatePicker Margin="1022,394,0,0" VerticalAlignment="Top" Width="540"/>
-        <TextBox HorizontalAlignment="Left" Margin="420,478,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" PlaceholderText="CNE"/>
-        <TextBox HorizontalAlignment="Left"  Margin="708,478,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" PlaceholderText="CIN"/>
-       <ComboBox Height="32" DisplayMemberPath="Text" x:Name="comboGender" ItemsSource="{Binding}" Margin="1020,478,0,0" Width="252" PlaceholderText="Sexe" >
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Green" BorderThickness="1" Padding="5">
-                        <TextBlock Text="{Binding Path=Text}" />
-                    </Border>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <TextBox HorizontalAlignment="Left" Margin="1306,478,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" PlaceholderText="Télephone"/>
-        <TextBox HorizontalAlignment="Left" Height="138" Margin="421,551,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1140" PlaceholderText="Addresse"/>
-        <Button Content="Ajouter" Height="41" Margin="1016,758,0,0" VerticalAlignment="Top" Width="167" Click="addStudent" FontWeight="Bold"/>
-        <Button Content="Annuler" Height="41" Margin="793,758,0,0" Background="White" BorderBrush="Gray" VerticalAlignment="Top" Width="167" Click="cancelAddStudent"/>
-        
+        <TextBlock x:Name="page_title" HorizontalAlignment="Left" Margin="671,199,0,0" Text="Ajouter un(e) étudiant(e)" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="nomInput" HorizontalAlignment="Left" FontFamily="Segoe UI" Margin="214,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540" PlaceholderText="Nom"/>
+        <TextBox x:Name="prenomInput" HorizontalAlignment="Left" Margin="814,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540" PlaceholderText="Prénom"/>
+        <ComboBox x:Name="comboFiliere" DisplayMemberPath="Text" ItemsSource="{Binding Path=ListFilieres}" Height="32" Margin="214,439,0,0" Width="540" PlaceholderText="Filière"/>
+        <DatePicker x:Name="dateBirthPicker" Margin="816,439,0,0" VerticalAlignment="Top" Width="536"/>
+        <TextBox x:Name="cneInput" HorizontalAlignment="Left" Margin="214,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" PlaceholderText="CNE"/>
+        <TextBox x:Name="cinInput" HorizontalAlignment="Left"  Margin="502,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" PlaceholderText="CIN"/>
+        <ComboBox Height="32" DisplayMemberPath="Text" x:Name="comboGender" ItemsSource="{Binding Path=ListGender}" Margin="814,0,0,0" Width="252" PlaceholderText="Sexe" VerticalAlignment="Center" />
+        <TextBox x:Name="phoneInput" HorizontalAlignment="Left" Margin="1100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" PlaceholderText="Télephone"/>
+        <TextBox x:Name="adresseInput" HorizontalAlignment="Left" Height="138" Margin="215,596,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1140" PlaceholderText="Addresse"/>
+        <Button Content="Ajouter" x:Name="buttonActions"  Height="41" Margin="810,803,0,0" VerticalAlignment="Top" Width="167" Click="addStudent" FontWeight="Bold"/>
+        <Button Content="Annuler" Height="41" Margin="587,803,0,0" Background="White" BorderBrush="Gray" VerticalAlignment="Top" Width="167" Click="cancelAddStudent"/>
+
 
     </Grid>
 </Page>

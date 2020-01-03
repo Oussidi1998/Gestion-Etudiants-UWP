@@ -21,6 +21,6 @@
         <Custom1:RadDataGrid x:Name="tableStudents" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="52,188,0,0" VerticalAlignment="Top" Width="Auto" Height="764" SelectionChanged="itemSelected">
 
         </Custom1:RadDataGrid>
-        <TextBox  HorizontalAlignment="Stretch" Height="38" Margin="52,150,0,0" PlaceholderText="Live Search" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" FontSize="16"/>
+        <TextBox x:Name="searchbox"  HorizontalAlignment="Stretch" Height="38" Margin="52,150,0,0" PlaceholderText="Live Search" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" FontSize="16" TextChanged="liveSearchData"/>
     </Grid>
 </Page>
